@@ -2,8 +2,8 @@ class MainInterpreter:
     def __init__(self):
         self.variables = {}
 
-    def interpret(self, program):
-        lines = program.split("\n")
+    def interpret(self, PROGRAM):
+        lines = PROGRAM.split(";")
 
         for line in lines:
 
@@ -26,7 +26,7 @@ class MainInterpreter:
 
             elif line.startswith("frac"):
                 parts = line.split(" ")
-                if len(parts) == 3:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
+                if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
                         self.variables[parts[1]] = float(parts[3])
                     else:
@@ -36,7 +36,7 @@ class MainInterpreter:
 
             elif line.startswith("lin"):
                 parts = line.split(" ")
-                if len(parts) == 3:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
+                if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
                         self.variables[parts[1]] = str(parts[3])
                     else:
@@ -46,7 +46,7 @@ class MainInterpreter:
 
             elif line.startswith("bool"):
                 parts = line.split(" ")
-                if len(parts) == 3:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
+                if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
                         self.variables[parts[1]] = bool(parts[3])
                     else:
@@ -54,16 +54,19 @@ class MainInterpreter:
                 else:
                     print("Ошибка: Неправильное построение. Имели вы в виду: тип название значение?")
 
-            else:
-                print("Ошибка: Недопустимая команда или начало/конец кода")
+            elif line.startswith("start"):
+                pass
 
-# Пример использования
+            else:
+                print("Ошибка: Недопустимая команда")
+
+
 interpreter = MainInterpreter()
 
-program = \
-"""
-ent я_мажу_жопу_вазелином = 15
-console.say я_мажу_жопу_вазелином
-"""
-interpreter.interpret(program)
+PROGRAM = ""
 
+while True:
+    program = input()
+    PROGRAM = PROGRAM + program
+    if program == "start":
+        interpreter.interpret(PROGRAM)
