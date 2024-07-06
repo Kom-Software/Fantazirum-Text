@@ -2,8 +2,8 @@ class MainInterpreter:
     def __init__(self):
         self.variables = {}
 
-    def interpret(self, PROGRAM):
-        lines = PROGRAM.split(";")
+    def interpret(self, program):
+        lines = program.split("\n")
 
         for line in lines:
 
@@ -49,6 +49,7 @@ class MainInterpreter:
                 if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
                         self.variables[parts[1]] = bool(parts[3])
+                        print(parts)
                     else:
                         print("Ошибка: Неверный знак присвоения или сравнения.")
                 else:
@@ -58,15 +59,16 @@ class MainInterpreter:
                 pass
 
             else:
-                print("Ошибка: Недопустимая команда")
+                print("Ошибка: Недопустимая команда или конец / начало кода.")
 
 
 interpreter = MainInterpreter()
 
-PROGRAM = ""
+program = """
+ent h = 99
+frac i = 5.21
+console.say h
+console.say i
+"""
 
-while True:
-    program = input()
-    PROGRAM = PROGRAM + program
-    if program == "start":
-        interpreter.interpret(PROGRAM)
+interpreter.interpret(program)
