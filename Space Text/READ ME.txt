@@ -1,2 +1,23 @@
-cd C:\Users\RedDragon\Desktop\Space Text
-python SpaceText.py
+2 ways to launch into a programming language:
+
+1. Use the "CMD"
+
+For windows:
+  1. open cmd
+  2. write there: "cd the_path_of_the_folder_where_the_project_is_stored"
+  3. write there: "python SpaceText.py"
+  4. done!
+
+For linux:
+  soon :)
+
+2. Use your code editor:
+  For PyCharm:
+    1. open PyCharm with project
+    2. click start button on the top of the screen
+    3. done!
+
+  For Visual Studio Code:
+    1. open Visual Studio Code with project
+    2. click start button on the top of the screen
+    3. done!
