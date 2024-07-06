@@ -1,0 +1,2 @@
+cd C:\Users\RedDragon\Desktop\Space Text
+python SpaceText.py
