@@ -14,14 +14,14 @@ class MainInterpreter:
                 elif parts[1].startswith('"') and parts[1].endswith('"'):
                     print(parts[1])
                 else:
-                    print("Ошибка: Переменная без значения: " + parts[1])
+                    print("Ошибка 100: Переменная без значения: " + parts[1])
 
             elif line.startswith("console.get"):
                 parts = line.split(" ")
                 if len(parts) == 2:
                     print(f"{self.variables.get(parts[1])}")
                 else:
-                    print("Ошибка: Неправильное построение. Имели вы в виду: console.get название_переменной?")
+                    print("Ошибка 200: Неправильное построение. Имели вы в виду: console.get название_переменной?")
 
             elif line.startswith("ent"):
                 parts = line.split(" ")
@@ -29,9 +29,9 @@ class MainInterpreter:
                     if parts[2] == "=":
                         self.variables[parts[1]] = int(parts[3])
                     else:
-                        print("Ошибка: Неверный знак присвоения или сравнения.")
+                        print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
-                    print("Ошибка: Неправильное построение. Имели вы в виду: тип название знак_присвоения_или_сравнения значение?")
+                    print("Ошибка 201: Неправильное построение. Имели вы в виду: тип название = значение?")
 
             elif line.startswith("frac"):
                 parts = line.split(" ")
@@ -39,9 +39,9 @@ class MainInterpreter:
                     if parts[2] == "=":
                         self.variables[parts[1]] = float(parts[3])
                     else:
-                        print("Ошибка: Неверный знак присвоения или сравнения.")
+                        print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
-                    print("Ошибка: Неправильное построение. Имели вы в виду: тип название значение?")
+                    print("Ошибка 201: Неправильное построение. Имели вы в виду: тип название = значение?")
 
             elif line.startswith("lin"):
                 parts = line.split(" ")
@@ -49,9 +49,9 @@ class MainInterpreter:
                     if parts[2] == "=":
                         self.variables[parts[1]] = str(parts[3])
                     else:
-                        print("Ошибка: Неверный знак присвоения или сравнения.")
+                        print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
-                    print("Ошибка: Неправильное построение. Имели вы в виду: тип название значение?")
+                    print("Ошибка 201: Неправильное построение. Имели вы в виду: тип название = значение?")
 
             elif line.startswith("bool"):
                 parts = line.split(" ")
@@ -62,11 +62,11 @@ class MainInterpreter:
                         elif parts[3] == "false":
                             self.variables[parts[1]] = False
                         else:
-                            print("Ошибка: Неверное значение булевой переменной. Оно должно равняться 'true' или 'false'.")
+                            print("Ошибка 101: Неверное значение булевой переменной. Оно должно равняться 'true' или 'false'.")
                     else:
-                        print("Ошибка: Неверный знак присвоения или сравнения.")
+                        print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
-                    print("Ошибка: Неправильное построение. Имели вы в виду: тип название значение?")
+                    print("Ошибка 201: Неправильное построение. Имели вы в виду: тип название = значение?")
 
             elif line.startswith("feauture"):
                 parts = line.split(" ")
@@ -81,7 +81,7 @@ class MainInterpreter:
                 pass
 
             else:
-                print("Ошибка: Неизвестная команда.")
+                print("Ошибка 400: Неизвестная команда.")
 
 interpreter = MainInterpreter()
 
