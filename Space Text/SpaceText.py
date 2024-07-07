@@ -27,7 +27,10 @@ class MainInterpreter:
                 parts = line.split(" ")
                 if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
-                        self.variables[parts[1]] = int(parts[3])
+                        try:
+                            self.variables[parts[1]] = int(parts[3])
+                        except:
+                            print('Ошибка 101: Неверное значение числовой переменной. Значение должно быть целым и от -2 147 483 648 до 2 147 483 647.')
                     else:
                         print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
@@ -37,7 +40,10 @@ class MainInterpreter:
                 parts = line.split(" ")
                 if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
-                        self.variables[parts[1]] = float(parts[3])
+                        try:
+                            self.variables[parts[1]] = float(parts[3])
+                        except:
+                            print("Ошибка 102: Неправильное значение числовой переменной. Значение должно быть дробным и от -3.4028235E+38 до 3.4028235E+38.")
                     else:
                         print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
@@ -47,7 +53,10 @@ class MainInterpreter:
                 parts = line.split(" ")
                 if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
-                        self.variables[parts[1]] = str(parts[3])
+                        try:
+                            self.variables[parts[1]] = str(parts[3])
+                        except:
+                            print("Ошибка 103: Неверное значение строчной переменной. Значение должно состоять из букв и цифр.")
                     else:
                         print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
@@ -62,7 +71,7 @@ class MainInterpreter:
                         elif parts[3] == "false":
                             self.variables[parts[1]] = False
                         else:
-                            print("Ошибка 101: Неверное значение булевой переменной. Оно должно равняться 'true' или 'false'.")
+                            print("Ошибка 104: Неверное значение булевой переменной. Оно должно равняться 'true' или 'false'.")
                     else:
                         print("Ошибка 300: Неверный знак присвоения или сравнения.")
                 else:
