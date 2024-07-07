@@ -4,15 +4,24 @@ class MainInterpreter:
 
     def interpret(self, program):
         lines = program.split("\n")
-
+        print(lines)
         for line in lines:
 
             if line.startswith("console.say"):
                 parts = line.split(" ")
                 if parts[1] in self.variables:
                     print(self.variables[parts[1]])
+                elif parts[1].startswith('"') and parts[1].endswith('"'):
+                    print(parts[1])
                 else:
                     print("Ошибка: Переменная без значения: " + parts[1])
+
+            elif line.startswith("console.get"):
+                parts = line.split(" ")
+                if len(parts) == 2:
+                    print(f"{self.variables.get(parts[1])}")
+                else:
+                    print("Ошибка: Неправильное построение. Имели вы в виду: console.get название_переменной?")
 
             elif line.startswith("ent"):
                 parts = line.split(" ")
@@ -22,7 +31,7 @@ class MainInterpreter:
                     else:
                         print("Ошибка: Неверный знак присвоения или сравнения.")
                 else:
-                    print("Ошибка: Неправильное построение. Имели вы в виду: тип название значение?")
+                    print("Ошибка: Неправильное построение. Имели вы в виду: тип название знак_присвоения_или_сравнения значение?")
 
             elif line.startswith("frac"):
                 parts = line.split(" ")
@@ -48,27 +57,38 @@ class MainInterpreter:
                 parts = line.split(" ")
                 if len(parts) == 4:                                                             # проверка на то, что, правильно ли пользователь указал построение? (тип название значение)
                     if parts[2] == "=":
-                        self.variables[parts[1]] = bool(parts[3])
-                        print(parts)
+                        if parts[3] == "true":
+                            self.variables[parts[1]] = True
+                        elif parts[3] == "false":
+                            self.variables[parts[1]] = False
+                        else:
+                            print("Ошибка: Неверное значение булевой переменной. Оно должно равняться 'true' или 'false'.")
                     else:
                         print("Ошибка: Неверный знак присвоения или сравнения.")
                 else:
                     print("Ошибка: Неправильное построение. Имели вы в виду: тип название значение?")
 
+            elif line.startswith("feauture"):
+                parts = line.split(" ")
+                if len(parts) == 2:
+                    if parts[1].endswith(":"):
+                        print(parts[1])
+
             elif line.startswith("start"):
                 pass
 
-            else:
-                print("Ошибка: Недопустимая команда или конец / начало кода.")
+            elif line.startswith(""):
+                pass
 
+            else:
+                print("Ошибка: Неизвестная команда.")
 
 interpreter = MainInterpreter()
 
-program = """
-ent h = 99
-frac i = 5.21
-console.say h
-console.say i
-"""
+program = ""
 
-interpreter.interpret(program)
+while True:
+    sprogram = str(input())
+    program = program + "\n" + sprogram
+    if sprogram == "start":
+        interpreter.interpret(program)
