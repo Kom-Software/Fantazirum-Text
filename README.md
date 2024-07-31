@@ -1,11 +1,11 @@
-# Space Text
-Programming language for [Space Engine.](https://github.com/Kom-Software/Space-Engine)
+# Fantazirum-Text
+Programming language for [Fantazirum-Text.](https://github.com/Kom-Software/Space-Engine)
 ## 2 ways to launch into a programming language:
   ### 1. Use the "CMD":
   1.1 For windows:
       Open CMD
       Write there: ```cd the_path_of_the_folder_where_the_project_is_stored```
-      Write there: ```python SpaceText.py```
+      Write there: ```python Fantazirum-Text.py```
       Done!
 
   1.2 For Linux:
@@ -23,5 +23,9 @@ Programming language for [Space Engine.](https://github.com/Kom-Software/Space-E
       Done!
 
 ### 3. Updates:
-            elif re.fullmatch(r'".+?"', line):
-                print("Hello!")
+            elif re.fullmatch(r'console.get .+?', line):
+                parts = line.split(" ")
+                if parts[1] in self.console:
+                    print('true')
+                else:
+                    print('false')
